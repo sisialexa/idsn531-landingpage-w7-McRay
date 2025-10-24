@@ -1,0 +1,147 @@
+<!-- Disclosure: This website was created and maintained by Sierra McRay, with the assistance 
+ of an AI agent (GitHub Copilot) for structuring the columns and implementing the eye and scroll animation.
+ Week 6: AI helped me fix my scan animation when one of my skills is hovered over. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>About Me - Sierra McRay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-container">
+        <nav class="site-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="playground.html">Playground</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <main class="about-main">
+            <!-- Hero Section with animated profile -->
+            <div class="about-hero">
+                <div class="profile-container">
+                    <div class="profile-image-wrapper">
+                        <img src="img/sierra.png" alt="Sierra McRay" class="profile-image">
+                        <div class="profile-glow"></div>
+                    </div>
+                </div>
+                <div class="hero-content">
+                    <div class="animated-text">
+                        <h3>Hi! Nice to meet you!</h3>
+                        <p>I'm Sierra, a passionate interactive designer dedicated to crafting engaging and meaningful user experiences. With expertise in the entire Adobe Creative Suite, Figma, and Blender, I thrive on blending creativity with technical skill.
+
+When I'm not designing, you can catch me video editing, shopping for 90s styled clothing, or playing the latest video game. 🎮</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Showcase with animations -->
+            <div class="skills-showcase">
+                <h3 class="section-title">Skills & Expertise</h3>
+                <div class="skills-grid">
+                    <div class="skill-category hover-lift">
+                        <div class="skill-icon">🎨</div>
+                        <h4>Visual Design</h4>
+                        <ul>
+                            <li>Adobe Creative Suite</li>
+                            <li>Figma & Sketch</li>
+                            <li>Brand Identity</li>
+                            <li>UI/UX Design</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category hover-lift">
+                        <div class="skill-icon">🤖</div>
+                        <h4>AI & Technology</h4>
+                        <ul>
+                            <li>Artificial Intelligence</li>
+                            <li>Machine Learning</li>
+                            <li>GenAI Applications</li>
+                            <li>Creative AI Tools</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category hover-lift">
+                        <div class="skill-icon">💻</div>
+                        <h4>Development</h4>
+                        <ul>
+                            <li>HTML & CSS</li>
+                            <li>Python</li>
+                            <li>Interactive Prototyping</li>
+                            <li>Motion Graphics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Values Section -->
+            <div class="values-section">
+                <h3 class="section-title">Core Values</h3>
+                <div class="values-grid">
+                    <div class="value-card pulse-on-hover">
+                        <h4>Innovation</h4>
+                        <p>Constantly exploring new technologies and creative approaches to solve complex design challenges.</p>
+                    </div>
+                    <div class="value-card pulse-on-hover">
+                        <h4>Collaboration</h4>
+                        <p>Working closely with cross-functional teams to deliver solutions that exceed expectations.</p>
+                    </div>
+                    <div class="value-card pulse-on-hover">
+                        <h4>Excellence</h4>
+                        <p>Committed to delivering high-quality work that makes a meaningful impact on users and businesses.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <div class="cta-card">
+                    <h3>Let's Create Together</h3>
+                    <p>Ready to bring your next project to life? I'm always excited to collaborate on innovative designs and explore new creative possibilities.</p>
+                    <a href="contact.html" class="cta-button">Get In Touch</a>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="site-footer">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 16px;">
+                <img src="img/sierra.png" alt="Sierra McRay" style="width:48px; height:48px; border-radius:50%; object-fit:cover;">
+                <a href="https://www.linkedin.com/in/sierra-mcray/" target="_blank" rel="noopener noreferrer">Connect with me on LinkedIn</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Reveal on scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add floating animation to profile image
+        const profileImage = document.querySelector('.profile-image-wrapper');
+        if (profileImage) {
+            setInterval(() => {
+                profileImage.style.transform = `translateY(${Math.sin(Date.now() * 0.001) * 10}px)`;
+            }, 16);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!-- Disclosure: This website was created and maintained by Sierra McRay, with the assistance 
+ of an AI agent (GitHub Copilot) for structuring the columns and implementing the eye and scroll animation.
+ Week 3: AI helped fix organization of folders, after I unfortunately broke it when trying to sort them. -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="layout-container">
+            <nav class="site-nav">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="projects.html">Projects</a>
+                <a href="playground.html">Playground</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <header class="site-header">
+                <h1>Hi, I'm Sierra McRay</h1>
+            </header>
+            <main class="site-main">
+                <h2 style="text-align:center; margin: 16px 0 24px 0;">With a background in Visual and Product Design, I have <br> always been obsessed with bringing new design concepts to <br> life. I currently work at Meta with as a GenAI <br> Visual Arts Specialist.</h2>
+                <div id="hero-image-container">
+                    <img id="hero-image" src="img/eyesclosed.png" alt="Sierra McRay">
+                </div>
+                <script>
+                    const images = ["img/eyesclosed.png", "img/eyesopened.png"];
+                    let current = 0;
+                    setInterval(() => {
+                        current = (current + 1) % images.length;
+                        document.getElementById("hero-image").src = images[current];
+                    }, 1000);
+                </script>
+                <div id="about-marquee-container">
+                    <div id="about-marquee">
+                        <span>About Me&nbsp;</span><span>About Me&nbsp;</span><span>About Me&nbsp;</span><span>About Me&nbsp;</span><span>About Me&nbsp;</span><span>About Me&nbsp;</span><span>About Me&nbsp;</span><span>About Me&nbsp;</span><span>About Me&nbsp;</span><span>About Me&nbsp;</span>
+                    </div>
+                </div>
+
+                <div class="experience-row">
+                    <div class="experience-box">
+                        <h3>Meta</h3>
+                        <h4>GenAI Visual Arts Specialist</h4>
+                        <p>Leading creative AI initiatives and collaborating with cross-functional teams to deliver innovative visual solutions for Meta's products.</p>
+                    </div>
+                    <div class="experience-box">
+                        <h3>Google</h3>
+                        <h4>UI/UX Design Mentorship</h4>
+                        <p>Engaged in workshops, tutorials, and design challenges to enhance my skills in interaction design, information architecture, and user empathy.</p>
+                    </div>
+                    <div class="experience-box">
+                        <h3>Fraser Comm.</h3>
+                        <h4>Interaction & Media Design Intern</h4>
+                        <p>Designed and produced digital media assets for client campaigns, including motion graphics, interactive prototypes, and social content, leading to a 150% increase in impressions across channels</p>
+                    </div>
+                </div>
+
+                <div class="three-column-headings">
+                    <div>
+                        <h3>Technical Skills:</h3>
+                        <p>Adobe Creative Suite</p>
+                        <p>Figma & Sketch</p>
+                        <p>Artificial Intelligence & LLMs</p>
+                    </div>
+                    <div>
+                        <h4>Early Stage Coding Skills:</h4>
+                        <p>HTML</p>
+                        <p>CSS</p>
+                        <p>Python</p>
+                    </div>
+                    <div>
+                        <h4>Interaction Skills:</h4>
+                        <p>Utilizing AI and machine learning</p>
+                        <p>Building brand identity</p>
+                        <p>Ensuring the best user experience</p>
+                    </div>
+                </div>
+            </main>
+            <footer class="site-footer">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 16px;">
+                    <img src="img/sierra.png" alt="Sierra McRay" style="width:48px; height:48px; border-radius:50%; object-fit:cover;">
+                    <a href="https://www.linkedin.com/in/sierra-mcray/" target="_blank" rel="noopener noreferrer">Connect with me on LinkedIn</a>
+                </div>
+            </footer>
+    </body>
+</html>

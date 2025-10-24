@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Projects - Sierra McRay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="layout-container">
+        <nav class="site-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="playground.html">Playground</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <header class="site-header">
+            <h1>My Projects</h1>
+        </header>
+        <main class="projects-main">
+            <div class="projects-list">
+                <section class="project">
+                    <img src="img/project1.png" alt="Project 1" class="project-img">
+                    <div class="project-info">
+                        <h2>Murusa</h2>
+                        <p>Allows users to stream music, buy artist merch, watch live shows, and explore upcoming tours—all from one convenient platform.</p>
+                        <div class="project-details" style="display: none;">
+                            <h3>Technologies Used:</h3>
+                            <ul>
+                                <li>UI/UX Design</li>
+                                <li>Adobe Creative Suite</li>
+                                <li>Figma Prototyping</li>
+                                <li>User Research</li>
+                            </ul>
+                            <button class="learn-more-btn">View Case Study</button>
+                        </div>
+                        <button class="toggle-details-btn">Show Details</button>
+                    </div>
+                </section>
+                <section class="project">
+                    <img src="img/project2.png" alt="Project 2" class="project-img">
+                    <div class="project-info">
+                        <h2>GallerAi</h2>
+                        <p>AI-powered platform that helps creatives generate, organize, and refine visual ideas.</p>
+                        <div class="project-details" style="display: none;">
+                            <h3>Technologies Used:</h3>
+                            <ul>
+                                <li>AI Integration</li>
+                                <li>Python Development</li>
+                                <li>Machine Learning</li>
+                                <li>Creative AI Tools</li>
+                            </ul>
+                            <button class="learn-more-btn">View Case Study</button>
+                        </div>
+                        <button class="toggle-details-btn">Show Details</button>
+                    </div>
+                </section>
+            </div>
+            
+            <script>
+                $(document).ready(function() {
+                    // Toggle project details
+                    $('.toggle-details-btn').click(function(e) {
+                        e.preventDefault();
+                        
+                        const $button = $(this);
+                        const $details = $button.siblings('.project-details');
+                        const isVisible = $details.is(':visible');
+                        
+                        $details.slideToggle(400);
+                        $button.text(isVisible ? 'Show Details' : 'Hide Details');
+                    });
+                    
+                    // Learn more button functionality
+                    $('.learn-more-btn').click(function(e) {
+                        e.preventDefault();
+                        alert('Case study coming soon!');
+                    });
+                    
+                    // Project hover effects
+                    $('.project').hover(
+                        function() {
+                            $(this).find('.project-img').addClass('img-zoom');
+                        },
+                        function() {
+                            $(this).find('.project-img').removeClass('img-zoom');
+                        }
+                    );
+                });
+            </script>
+        </main>
+        <footer class="site-footer">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 16px;">
+                <img src="img/sierra.png" alt="Sierra McRay" style="width:48px; height:48px; border-radius:50%; object-fit:cover;">
+                <a href="https://www.linkedin.com/in/sierra-mcray/" target="_blank" rel="noopener noreferrer">Connect with me on LinkedIn</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

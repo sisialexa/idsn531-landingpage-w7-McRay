@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Playground - Sierra McRay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="layout-container">
+        <nav class="site-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="playground.html">Playground</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <header class="site-header">
+            <h1>Playground</h1>
+        </header>
+        <main class="playground-main">
+            <h2 style="text-align:center; margin: 16px 0 24px 0;">Explore some of my <br> visual experiments and design explorations.</h2>
+            
+            <div class="playground-gallery">
+                <div class="gallery-controls">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="3dmodels">3D Models</button>
+                </div>
+                
+                <div class="playground-grid">
+                    <div class="playground-item" data-category="3dmodels" data-index="0">
+                        <img src="pngs/Screenshot 2024-06-13 054657.png" alt="Cyberpunk 3D Model 1" class="playground-img">
+                        <div class="item-overlay">
+                            <h4>Neon Cityscape</h4>
+                            <p>Cyberpunk metropolis with glowing neon architecture</p>
+                            <button class="view-btn">View Full</button>
+                        </div>
+                    </div>
+                    
+                    <div class="playground-item" data-category="3dmodels" data-index="1">
+                        <img src="pngs/Screenshot 2024-06-13 054731.png" alt="Cyberpunk 3D Model 2" class="playground-img">
+                        <div class="item-overlay">
+                            <h4>Cyber Terminal</h4>
+                            <p>Futuristic data interface with holographic elements</p>
+                            <button class="view-btn">View Full</button>
+                        </div>
+                    </div>
+                    
+                    <div class="playground-item" data-category="3dmodels" data-index="2">
+                        <img src="pngs/Screenshot 2024-06-13 054940.png" alt="Cyberpunk 3D Model 3" class="playground-img">
+                        <div class="item-overlay">
+                            <h4>Tech Noir Environment</h4>
+                            <p>Dark cyberpunk scene with atmospheric lighting</p>
+                            <button class="view-btn">View Full</button>
+                        </div>
+                    </div>
+                    
+                    <div class="playground-item" data-category="3dmodels" data-index="3">
+                        <img src="pngs/Screenshot 2024-06-13 055113.png" alt="Cyberpunk 3D Model 4" class="playground-img">
+                        <div class="item-overlay">
+                            <h4>Digital Dystopia</h4>
+                            <p>Cyberpunk street scene with neural augmentations</p>
+                            <button class="view-btn">View Full</button>
+                        </div>
+                    </div>
+                    
+                    <div class="playground-item" data-category="3dmodels" data-index="4">
+                        <img src="pngs/Screenshot 2024-06-13 055313.png" alt="Cyberpunk 3D Model 5" class="playground-img">
+                        <div class="item-overlay">
+                            <h4>Chrome Nexus</h4>
+                            <p>Sleek cyberpunk hub with chrome and neon accents</p>
+                            <button class="view-btn">View Full</button>
+                        </div>
+                    </div>
+                    
+                    <div class="playground-item" data-category="3dmodels" data-index="5">
+                        <img src="pngs/Screenshot 2024-06-13 060250.png" alt="Cyberpunk 3D Model 6" class="playground-img">
+                        <div class="item-overlay">
+                            <h4>Neon Underground</h4>
+                            <p>Subterranean cyberpunk world with electric aesthetics</p>
+                            <button class="view-btn">View Full</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lightbox Modal -->
+            <div class="lightbox" id="lightbox">
+                <div class="lightbox-content">
+                    <span class="lightbox-close">&times;</span>
+                    <button class="lightbox-nav prev">‹</button>
+                    <button class="lightbox-nav next">›</button>
+                    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+                    <div class="lightbox-info">
+                        <h4 id="lightbox-title"></h4>
+                        <p id="lightbox-description"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                $(document).ready(function() {
+                    const images = [
+                        { src: 'pngs/Screenshot 2024-06-13 054657.png', title: 'Neon Cityscape', desc: 'Cyberpunk metropolis featuring towering skyscrapers illuminated by vibrant neon lights and holographic advertisements' },
+                        { src: 'pngs/Screenshot 2024-06-13 054731.png', title: 'Cyber Terminal', desc: 'Futuristic data interface showcasing holographic elements, neural networks, and cybernetic connectivity' },
+                        { src: 'pngs/Screenshot 2024-06-13 054940.png', title: 'Tech Noir Environment', desc: 'Dark cyberpunk atmosphere with moody lighting, rain-soaked streets, and neon reflections' },
+                        { src: 'pngs/Screenshot 2024-06-13 055113.png', title: 'Digital Dystopia', desc: 'Gritty cyberpunk street scene featuring neural augmentations, cybernetic implants, and urban decay' },
+                        { src: 'pngs/Screenshot 2024-06-13 055313.png', title: 'Chrome Nexus', desc: 'Sleek cyberpunk hub combining polished chrome surfaces with electric neon accents and digital displays' },
+                        { src: 'pngs/Screenshot 2024-06-13 060250.png', title: 'Neon Underground', desc: 'Subterranean cyberpunk world pulsing with electric aesthetics, underground networks, and neon circuits' }
+                    ];
+                    
+                    let currentImageIndex = 0;
+                    
+                    // Filter functionality
+                    $('.filter-btn').click(function() {
+                        $('.filter-btn').removeClass('active');
+                        $(this).addClass('active');
+                        
+                        const filter = $(this).data('filter');
+                        
+                        if (filter === 'all') {
+                            $('.playground-item').fadeIn(400);
+                        } else if (filter === '3dmodels') {
+                            $('.playground-item').fadeIn(400); // Show all items since they're all 3D models
+                        }
+                    });
+                    
+                    // Lightbox functionality
+                    $('.view-btn').click(function(e) {
+                        e.stopPropagation();
+                        const index = $(this).closest('.playground-item').data('index');
+                        openLightbox(index);
+                    });
+                    
+                    $('.playground-img').click(function() {
+                        const index = $(this).closest('.playground-item').data('index');
+                        openLightbox(index);
+                    });
+                    
+                    function openLightbox(index) {
+                        currentImageIndex = index;
+                        const image = images[index];
+                        
+                        $('#lightbox-img').attr('src', image.src);
+                        $('#lightbox-title').text(image.title);
+                        $('#lightbox-description').text(image.desc);
+                        
+                        $('#lightbox').fadeIn(300);
+                    }
+                    
+                    $('.lightbox-close').click(function() {
+                        $('#lightbox').fadeOut(300);
+                    });
+                    
+                    $('.lightbox-nav.prev').click(function() {
+                        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                        openLightbox(currentImageIndex);
+                    });
+                    
+                    $('.lightbox-nav.next').click(function() {
+                        currentImageIndex = (currentImageIndex + 1) % images.length;
+                        openLightbox(currentImageIndex);
+                    });
+                    
+                    // Close lightbox on background click
+                    $('#lightbox').click(function(e) {
+                        if (e.target === this) {
+                            $(this).fadeOut(300);
+                        }
+                    });
+                    
+                    // Keyboard navigation
+                    $(document).keydown(function(e) {
+                        if ($('#lightbox').is(':visible')) {
+                            if (e.key === 'ArrowLeft') {
+                                $('.lightbox-nav.prev').click();
+                            } else if (e.key === 'ArrowRight') {
+                                $('.lightbox-nav.next').click();
+                            } else if (e.key === 'Escape') {
+                                $('.lightbox-close').click();
+                            }
+                        }
+                    });
+                    
+                    // Item hover effects
+                    $('.playground-item').hover(
+                        function() {
+                            $(this).find('.item-overlay').fadeIn(200);
+                        },
+                        function() {
+                            $(this).find('.item-overlay').fadeOut(200);
+                        }
+                    );
+                });
+            </script>
+        </main>
+        <footer class="site-footer">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 16px;">
+                <img src="img/sierra.png" alt="Sierra McRay" style="width:48px; height:48px; border-radius:50%; object-fit:cover;">
+                <a href="https://www.linkedin.com/in/sierra-mcray/" target="_blank" rel="noopener noreferrer">Connect with me on LinkedIn</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

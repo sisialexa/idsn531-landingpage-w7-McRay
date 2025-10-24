@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Contact - Sierra McRay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="layout-container">
+        <nav class="site-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="playground.html">Playground</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <header class="site-header">
+            <h1>Get In Touch</h1>
+        </header>
+        <main class="contact-main">
+            <h2 style="text-align:center; margin: 16px 0 24px 0;">Let's collaborate on your next <br> creative project or discuss opportunities <br> in design and AI innovation.</h2>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-method">
+                        <h3>Email</h3>
+                        <p><a href="mailto:sierramcray12@gmail.com">sierramcray12@gmail.com</a></p>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <h3>LinkedIn</h3>
+                        <p><a href="https://www.linkedin.com/in/sierra-mcray/" target="_blank" rel="noopener noreferrer">Connect with me professionally</a></p>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <h3>Location</h3>
+                        <p>San Francisco Bay Area</p>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required>
+                            <span class="error-message" id="name-error"></span>
+                            <span class="success-message" id="name-success"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                            <span class="error-message" id="email-error"></span>
+                            <span class="success-message" id="email-success"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" name="subject" required>
+                            <span class="error-message" id="subject-error"></span>
+                            <span class="success-message" id="subject-success"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                            <span class="error-message" id="message-error"></span>
+                            <span class="success-message" id="message-success"></span>
+                            <div class="char-counter"><span id="char-count">0</span>/500 characters</div>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn" id="submitBtn" disabled>Send Message</button>
+                        <div class="form-status" id="formStatus"></div>
+                    </form>
+                </div>
+                
+                <script>
+                    $(document).ready(function() {
+                        // Real-time form validation
+                        const validators = {
+                            name: function(value) {
+                                if (value.length < 2) return 'Name must be at least 2 characters';
+                                if (!/^[a-zA-Z\s]+$/.test(value)) return 'Name can only contain letters and spaces';
+                                return '';
+                            },
+                            email: function(value) {
+                                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                if (!emailRegex.test(value)) return 'Please enter a valid email address';
+                                return '';
+                            },
+                            subject: function(value) {
+                                if (value.length < 3) return 'Subject must be at least 3 characters';
+                                return '';
+                            },
+                            message: function(value) {
+                                if (value.length < 10) return 'Message must be at least 10 characters';
+                                if (value.length > 500) return 'Message must be less than 500 characters';
+                                return '';
+                            }
+                        };
+                        
+                        function validateField(fieldId) {
+                            const $field = $('#' + fieldId);
+                            const value = $field.val().trim();
+                            const error = validators[fieldId](value);
+                            
+                            const $errorMsg = $('#' + fieldId + '-error');
+                            const $successMsg = $('#' + fieldId + '-success');
+                            
+                            if (error) {
+                                $errorMsg.text(error).show();
+                                $successMsg.hide();
+                                $field.addClass('error').removeClass('success');
+                                return false;
+                            } else if (value) {
+                                $errorMsg.hide();
+                                $successMsg.text('✓').show();
+                                $field.removeClass('error').addClass('success');
+                                return true;
+                            } else {
+                                $errorMsg.hide();
+                                $successMsg.hide();
+                                $field.removeClass('error success');
+                                return false;
+                            }
+                        }
+                        
+                        function updateSubmitButton() {
+                            const allValid = ['name', 'email', 'subject', 'message'].every(validateField);
+                            $('#submitBtn').prop('disabled', !allValid);
+                        }
+                        
+                        // Real-time validation on input
+                        $('#name, #email, #subject, #message').on('input blur', function() {
+                            const fieldId = $(this).attr('id');
+                            validateField(fieldId);
+                            updateSubmitButton();
+                        });
+                        
+                        // Character counter for message
+                        $('#message').on('input', function() {
+                            const length = $(this).val().length;
+                            $('#char-count').text(length);
+                            
+                            if (length > 450) {
+                                $('#char-count').css('color', '#ff6b6b');
+                            } else {
+                                $('#char-count').css('color', '#51cf66');
+                            }
+                        });
+                        
+                        // Form submission with animation
+                        $('#contactForm').submit(function(e) {
+                            e.preventDefault();
+                            
+                            const $submitBtn = $('#submitBtn');
+                            const $formStatus = $('#formStatus');
+                            
+                            $submitBtn.text('Sending...').prop('disabled', true);
+                            
+                            // Simulate form submission
+                            setTimeout(function() {
+                                $formStatus.html('<p class="success">✓ Message sent successfully! I\'ll get back to you soon.</p>').fadeIn();
+                                $('#contactForm')[0].reset();
+                                $('.error-message, .success-message').hide();
+                                $('.form-group input, .form-group textarea').removeClass('error success');
+                                $submitBtn.text('Send Message').prop('disabled', true);
+                                $('#char-count').text('0');
+                            }, 2000);
+                        });
+                        
+                        // Contact method hover effects
+                        $('.contact-method').hover(
+                            function() {
+                                $(this).addClass('method-hover');
+                            },
+                            function() {
+                                $(this).removeClass('method-hover');
+                            }
+                        );
+                    });
+                </script>
+            </div>
+            
+            <div class="availability-section">
+                <h3>Current Availability</h3>
+                <p>I'm currently open to new opportunities in GenAI, visual design, and product innovation. Whether you're looking for collaboration, consulting, or full-time opportunities, I'd love to hear from you.</p>
+            </div>
+        </main>
+        <footer class="site-footer">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 16px;">
+                <img src="img/sierra.png" alt="Sierra McRay" style="width:48px; height:48px; border-radius:50%; object-fit:cover;">
+                <a href="https://www.linkedin.com/in/sierra-mcray/" target="_blank" rel="noopener noreferrer">Connect with me on LinkedIn</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
